@@ -175,7 +175,7 @@
         <list key="application_parameters"/>
       </operator>
       <operator activated="true" class="store" compatibility="11.0.001" expanded="true" height="68" name="Store" width="90" x="514" y="136">
-        <parameter key="repository_entry" value="SVM"/>
+        <parameter key="repository_entry" value="NN"/>
       </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="11.0.001" expanded="true" height="82" name="Performance (2)" width="90" x="581" y="238">
         <parameter key="manually_set_positive_class" value="false"/>

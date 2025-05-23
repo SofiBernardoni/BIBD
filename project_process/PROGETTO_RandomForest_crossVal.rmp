@@ -163,24 +163,27 @@
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
-          <operator activated="true" class="support_vector_machine_libsvm" compatibility="11.0.001" expanded="true" height="82" name="SVM" width="90" x="45" y="34">
-            <parameter key="svm_type" value="C-SVC"/>
-            <parameter key="kernel_type" value="rbf"/>
-            <parameter key="degree" value="3"/>
-            <parameter key="gamma" value="1.0"/>
-            <parameter key="coef0" value="0.0"/>
-            <parameter key="C" value="1.0"/>
-            <parameter key="nu" value="0.5"/>
-            <parameter key="cache_size" value="500"/>
-            <parameter key="epsilon" value="0.001"/>
-            <parameter key="p" value="0.1"/>
-            <list key="class_weights"/>
-            <parameter key="shrinking" value="true"/>
-            <parameter key="calculate_confidences" value="false"/>
-            <parameter key="confidence_for_multiclass" value="true"/>
+          <operator activated="true" class="concurrency:parallel_random_forest" compatibility="11.0.001" expanded="true" height="103" name="Random Forest" width="90" x="112" y="34">
+            <parameter key="number_of_trees" value="100"/>
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.25"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.05"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
           </operator>
-          <connect from_port="training set" to_op="SVM" to_port="training set"/>
-          <connect from_op="SVM" from_port="model" to_port="model"/>
+          <connect from_port="training set" to_op="Random Forest" to_port="training set"/>
+          <connect from_op="Random Forest" from_port="model" to_port="model"/>
           <portSpacing port="source_training set" spacing="0"/>
           <portSpacing port="sink_model" spacing="0"/>
           <portSpacing port="sink_through 1" spacing="0"/>
@@ -234,7 +237,7 @@
         <parameter key="sort_direction" value="ascending"/>
       </operator>
       <operator activated="true" class="store" compatibility="11.0.001" expanded="true" height="68" name="Store" width="90" x="447" y="136">
-        <parameter key="repository_entry" value="SVM_CrossVal"/>
+        <parameter key="repository_entry" value="RandomForest_CrossVal"/>
       </operator>
       <connect from_op="Read CSV" from_port="output" to_op="Filter Examples" to_port="example set input"/>
       <connect from_op="Filter Examples" from_port="example set output" to_op="Normalize" to_port="example set input"/>

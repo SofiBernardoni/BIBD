@@ -54,7 +54,7 @@
         <parameter key="read_not_matching_values_as_missings" value="false"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="11.0.001" expanded="true" height="68" name="Retrieve" width="90" x="179" y="34">
-        <parameter key="repository_entry" value="RandomTrees_CrossVal"/>
+        <parameter key="repository_entry" value="RandomForest"/>
       </operator>
       <operator activated="true" class="normalize" compatibility="11.0.001" expanded="true" height="103" name="Normalize" width="90" x="45" y="136">
         <parameter key="return_preprocessing_model" value="false"/>
